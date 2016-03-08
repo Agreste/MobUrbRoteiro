@@ -44,7 +44,7 @@ sessao_parser.add_argument('data', type=date)
 sessao_fields = {'id': fields.Integer(),
                  'nome': fields.String(),
                  'data': fields.Date(),
-                 'votacoes': fields.Nested(votacao_fields)
+                 'votacoes': fields.Nested(votacao_model)
                   }
 
 sessao_model = api.model('sessao', sessao_fields)
@@ -71,6 +71,44 @@ class ElesVotamSessaosApi(Resource):
                 sessao[i].votacoes = votacoes
 
         return sessao
+
+partido_fields = {'id': fields.Integer(),
+                  'nome': fields.String(),
+                  }
+
+partido_model = api.model('partido', partido_fields)
+
+@ns.route('/partidos')
+class ElesVotamPartidosApi(Resource):
+    @api.marshal_with(partido_model)
+    def get(self):
+        partidos = db.session.query(Partido).all()
+
+        return partidos
+
+partido_parser = RequestParser()
+partido_parser.add_argument('nome', type=str)
+
+vereador_fields = {'id': fields.Integer(),
+                  'nome': fields.String(),
+                  'idparlamentar': fields.String()
+                  }
+
+vereador_model = api.model('vereador', vereador_fields)
+
+@ns.route('/partidoVereadores')
+class ElesVotamPartidoVereadoresApi(Resource):
+    @api.doc(parser=partido_parser)
+    @api.marshal_with(vereador_model)
+    def get(self):
+        args = partido_parser.parse_args()
+        partido_nome = args['nome']
+
+        partido = db.session.query(Partido).filter(Partido.nome == partido_nome).one()
+        vereadores = db.session.query(Vereador).filter(Vereador.partido_id == partido.id).all()
+
+        return vereadores
+
 
 @app.route('/')
 @app.route('/index/')

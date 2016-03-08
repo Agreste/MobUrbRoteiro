@@ -1,9 +1,11 @@
 from application import db
+from sqlalchemy.orm import relationship
 
 class Sessao(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.Text)
     data = db.Column(db.Date())
+    votacao = relationship("Votacao", back_populates="sessao")
 
 class Partido(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -15,6 +17,7 @@ class Vereador(db.Model):
     nome = db.Column(db.Text)
     idparlamentar = db.Column(db.Integer)
     partido_id = db.Column(db.Integer, db.ForeignKey('partido.id'))
+    votos = relationship("Voto", back_populates="vereador")
 
 class Votacao(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,12 +33,16 @@ class Votacao(db.Model):
     abstencao = db.Column(db.Integer)
     branco = db.Column(db.Integer)
     notas_rodape = db.Column(db.Text)
+    votos = relationship("Voto", back_populates="votacao")
+    sessao = relationship("Sessao", back_populates="votacao")
 
 class Voto(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     votacao_id = db.Column(db.Integer, db.ForeignKey('votacao.id'))
     vereador_id = db.Column(db.Integer, db.ForeignKey('vereador.id'))
     valor = db.Column(db.Text)
+    vereador = relationship("Vereador", back_populates="votos")
+    votacao = relationship("Votacao", back_populates="votos")
 
 ##
 # Create your own models here and they will be imported automaticaly. or

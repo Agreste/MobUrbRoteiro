@@ -72,6 +72,7 @@ class ElesVotamSessaosApi(Resource):
 
         return sessao
 
+
 partido_fields = {'id': fields.Integer(),
                   'nome': fields.String(),
                   }
@@ -108,6 +109,27 @@ class ElesVotamPartidoVereadoresApi(Resource):
         vereadores = db.session.query(Vereador).filter(Vereador.partido_id == partido.id).all()
 
         return vereadores
+
+votacao_votos_parser = RequestParser()
+votacao_votos_parser.add_argument('votacao_id', type=int)
+
+voto_fields = {'id': fields.Integer(),
+               'vereador': fields.Nested(vereador_model),
+               'valor': fields.String()
+}
+
+voto_model = api.model('voto', voto_fields)
+
+@ns.route('/votacaoVotos')
+class ElesVotamVotacaoVotosApi(Resource):
+    @api.doc(parser=votacao_votos_parser)
+    @api.marshal_with(voto_model)
+    def get(self):
+        args = votacao_votos_parser.parse_args()
+        votacao_id = args['votacao_id']
+        votos = db.session.query(Voto).filter(Voto.votacao_id == votacao_id).all()
+
+        return votos
 
 
 @app.route('/')

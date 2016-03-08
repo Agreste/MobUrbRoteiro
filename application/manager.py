@@ -1,7 +1,76 @@
 from application import app
 from flask import render_template
 from application.models import *
+from flask_restplus import Api, Resource, fields
+from flask.ext.restplus.reqparse import RequestParser
+from flask.ext.restplus.inputs import date
 
+api = Api(app, version='1.0', title='ElesVotam API')
+ns = api.namespace('elesvotam', description='ElesVotam operations')
+
+votacao_parser = RequestParser()
+votacao_parser.add_argument('votacaoid', type=int)
+
+votacao_fields = {'votacaoid': fields.Integer(),
+                  'sessao_id': fields.Integer(),
+                  'tipo': fields.String(),
+                  'materia': fields.String(),
+                  'ementa': fields.String(),
+                  'resultado': fields.String(),
+                  'presentes': fields.String(),
+                  'sim': fields.Integer(),
+                  'nao': fields.Integer(),
+                  'abstencao': fields.Integer(),
+                  'branco': fields.Integer(),
+                  'notas_rodape': fields.String(),
+                  }
+
+votacao_model = api.model('Votacao', votacao_fields)
+
+@ns.route('/votacao')
+class ElesVotamVotacaosApi(Resource):
+    @api.doc(parser=votacao_parser)
+    @api.marshal_with(votacao_model)
+    def get(self):
+        args = votacao_parser.parse_args()
+        votacaoid = args['votacaoid']
+        votacao = db.session.query(Votacao).filter(Votacao.votacaoid == votacaoid).one()
+        return votacao
+
+sessao_parser = RequestParser()
+sessao_parser.add_argument('sessaoid', type=int)
+sessao_parser.add_argument('data', type=date)
+
+sessao_fields = {'id': fields.Integer(),
+                 'nome': fields.String(),
+                 'data': fields.Date(),
+                 'votacoes': fields.Nested(votacao_fields)
+                  }
+
+sessao_model = api.model('sessao', sessao_fields)
+
+@ns.route('/sessao')
+class ElesVotamSessaosApi(Resource):
+    @api.doc(parser=sessao_parser)
+    @api.marshal_with(sessao_model)
+    def get(self):
+        args = sessao_parser.parse_args()
+        sessaoid = args['sessaoid']
+        sessao_date = args['data']
+        if not sessao_date:
+            sessao = db.session.query(Sessao).filter(Sessao.id == sessaoid).one()
+            votacoes = db.session.query(Votacao).filter(Votacao.sessao_id == sessao.id).all()
+            sessao.votacoes = votacoes
+
+        else:
+            sessao_date = sessao_date.strftime('%Y-%m-%d')
+            sessao = db.session.query(Sessao).filter(Sessao.data == sessao_date).all()
+
+            for i,s in enumerate(sessao):
+                votacoes = db.session.query(Votacao).filter(Votacao.sessao_id == s.id).all()
+                sessao[i].votacoes = votacoes
+
+        return sessao
 
 @app.route('/')
 @app.route('/index/')

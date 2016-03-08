@@ -1,5 +1,42 @@
 from application import db
 
+class Sessao(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.Text)
+    data = db.Column(db.Date())
+
+class Partido(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.Text)
+    vereador = db.relationship('Vereador', backref='partido', lazy='dynamic')
+
+class Vereador(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nome = db.Column(db.Text)
+    idparlamentar = db.Column(db.Integer)
+    partido_id = db.Column(db.Integer, db.ForeignKey('partido.id'))
+
+class Votacao(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    votacaoid = db.Column(db.Integer)
+    sessao_id = db.Column(db.Integer, db.ForeignKey('sessao.id'))
+    tipo = db.Column(db.Text)
+    materia = db.Column(db.Text)
+    ementa = db.Column(db.Text)
+    resultado = db.Column(db.Text)
+    presentes = db.Column(db.Integer)
+    sim = db.Column(db.Integer)
+    nao = db.Column(db.Integer)
+    abstencao = db.Column(db.Integer)
+    branco = db.Column(db.Integer)
+    notas_rodape = db.Column(db.Text)
+
+class Voto(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    votacao_id = db.Column(db.Integer, db.ForeignKey('votacao.id'))
+    vereador_id = db.Column(db.Integer, db.ForeignKey('vereador.id'))
+    valor = db.Column(db.Text)
+
 ##
 # Create your own models here and they will be imported automaticaly. or
 # use a model per blueprint.

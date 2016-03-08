@@ -22,4 +22,4 @@ def tests():
 # start iteractive shell within the flask environment
 def shell():
     """ Start interactive shell within flask environment """
-    local('python shell.py')
+    local('ipython shell.py')

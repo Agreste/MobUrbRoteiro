@@ -8,6 +8,8 @@ from flask import *
 from application import *
 from application.default_settings import _basedir
 
+from IPython import embed
+
 
 os.environ['PYTHONINSPECT'] = 'True'
 
@@ -15,3 +17,5 @@ os.environ['PYTHONINSPECT'] = 'True'
 create_db_dir = _basedir + '/db'
 if not os.path.exists(create_db_dir):
     os.mkdir(create_db_dir, 0755)
+
+embed()

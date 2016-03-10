@@ -127,7 +127,8 @@ class ElesVotamVotacaoVotosApi(Resource):
     def get(self):
         args = votacao_votos_parser.parse_args()
         votacao_id = args['votacao_id']
-        votos = db.session.query(Voto).filter(Voto.votacao_id == votacao_id).all()
+        votacao = db.session.query(Votacao).filter(Votacao.votacaoid == votacao_id).one()
+        votos = db.session.query(Voto).filter(Voto.votacao_id == votacao.id).all()
 
         return votos
 

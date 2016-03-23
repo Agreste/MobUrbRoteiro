@@ -2,10 +2,12 @@ from flask import Flask, render_template, session
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask_restplus import Api, Resource, fields
 from flask.ext.restplus.reqparse import RequestParser
+from flask.ext.cors import CORS, cross_origin
 
 # Create the app and configuration
 # Read the configuration file
 app = Flask(__name__)
+cors = CORS(app)
 app.config.from_object('application.default_settings')
 app.config.from_envvar('PRODUCTION_SETTINGS', silent=True)
 

@@ -10,6 +10,9 @@ tags = pickle.load(tags_file)
 videos_urls_file = open('application/video_urls.dict')
 videos_urls = pickle.load(videos_urls_file)
 
+borba_urls_file = open('application/borba_urls.dict')
+borba_urls = pickle.load(borba_urls_file)
+
 videos_weights_file = open('application/videos_weights.dict')
 videos_weights = pickle.load(videos_weights_file)
 
@@ -48,4 +51,16 @@ def cria_roteiro(numero_maximo = 7, resolution="1280x720"):
     fechamento = np.random.choice(seleciona_fechamento(abertura))
     roteiro.append((videos_urls[resolution][fechamento], videos_subs.get(fechamento, 'NOSUB')))
     roteiro.append((finalizacao[resolution], 'NOSUB'))
+
+    # Adiciona cortes do Borbagato
+
+    numero_borbas = 3 + (numero_maximo - 7) / 2
+    indices = range(2, numero_maximo)
+    des_indices_borba = np.random.choice(indices, replace=False, size=numero_borbas)
+    indices_borba = sorted(des_indices_borba)
+    trechos_borba = np.random.choice(borba_urls[resolution].keys(), replace=False, size=numero_borbas)
+
+    for i, indice in enumerate(indices_borba):
+        roteiro.insert(indice + i, (borba_urls[resolution][trechos_borba[i]], 'NOSUB'))
+
     return roteiro

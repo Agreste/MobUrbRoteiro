@@ -8,6 +8,7 @@ from flask.ext.restplus.reqparse import RequestParser
 from flask.ext.restplus.inputs import date
 import application.script_creator as sc
 import json
+import random
 
 api = Api(app, version='1.0', title=u'Mobiliário Urbano API')
 ns = api.namespace('elesvotam', description=u'Mobiliário Urbano Operations')
@@ -27,7 +28,8 @@ video_model = api.model('Video', video_fields)
 
 @app.route('/roteiro')
 def roteiro():
-    roteiro = sc.cria_roteiro()
+    cortes = random.randint(7, 12)
+    roteiro = sc.cria_roteiro(numero_maximo = cortes)
     return json.dumps(roteiro)
 
 @app.route('/index/')

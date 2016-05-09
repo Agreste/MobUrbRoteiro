@@ -15,7 +15,6 @@ app.config.from_envvar('PRODUCTION_SETTINGS', silent=True)
 # Connect to database with sqlalchemy.
 db = SQLAlchemy(app)
 
-
 # 404 page not found "route"
 @app.errorhandler(404)
 def not_found(error):
@@ -30,5 +29,21 @@ def server_error(error):
     db.session.rollback()
     return render_template('500.html', title=title), 500
 
+@app.route('/videos')
+def videos():
+    return render_template('videos_pins.html'), 200
+
+@app.route('/sobre')
+def sobre():
+    return render_template('sobre.html'), 200
+
+@app.route('/creditos')
+def creditos():
+    return render_template('creditos.html'), 200
+
+@app.route('/')
+@app.route('/<slug>')
+def index(slug=None):
+    return render_template('video.html'), 200
 
 import application.manager

@@ -1,0 +1,280 @@
+@font-face {
+    font-family: OpenSans;
+    src: url('/static/fonts/OpenSans-Light.ttf');
+}
+
+@font-face {
+    font-family: OpenSans;
+    src: url('/static/fonts/OpenSans-LightItalic.ttf');
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: BebasNeue;
+    src: url('/static/fonts/BebasNeue.otf');
+}
+
+@font-face {
+    font-family: JosefinSlab;
+    src: url('/static/fonts/JosefinSlab-Light.ttf');
+}
+
+@font-face {
+    font-family: Lekton;
+    src: url('/static/fonts/Lekton-Regular.ttf');
+}
+
+/* fullscreen setup */
+html, body {
+    /* give this to all tags from html to .fullscreen */
+    height:100%;
+    min-height:100%;
+    min-width: 600px;
+    /* background-repeat: no-repeat;
+    background-size: 100%;    */
+}
+
+body {
+    background-color: black;
+}
+
+.background {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+a {
+    color:white !important;
+    cursor: pointer; cursor: hand;
+}
+
+.content-b a {
+ color: black;
+}
+
+.fullscreen,
+.content-a {
+    width:100%;
+    min-height:100%;
+}
+.not-fullscreen,
+.not-fullscreen .content-a,
+.fullscreen.not-overflow,
+.fullscreen.not-overflow .content-a {
+    height:100%;
+}
+
+/* content centering styles */
+.content-a {
+    display:table;
+}
+
+.content-a-text {
+    width: 400px;
+    background-color: black;
+}
+
+.content-b-title {
+    display:table-cell;
+    position:relative;
+    vertical-align:middle;
+    text-align: center;
+}
+
+.content-b-title .box {
+    width: 90%;
+    margin: auto;
+    background: url(/static/img/Logo.png) no-repeat;
+    background-size: 30%;
+}
+
+.content-b-title h1 {
+    font-family: BebasNeue;
+    font-size: 45px;
+    color: #fff;
+}
+
+.content-b-title h2 {
+    font-family: BebasNeue;
+    font-size: 25px;
+    color: #fff;
+}
+
+video {
+     background: black;
+     width: 100%;
+}
+
+.content-b {
+/*    display:table-cell; */
+    position:relative;
+    vertical-align:middle;
+    text-align: center;
+    width: 75%;
+    margin: auto;
+    margin-bottom: 100%;
+    font-family: OpenSans;
+    padding: 40px 60px;
+    font-size: 110%;
+}
+
+/* visual styles */
+body{
+    margin:0;
+    font-family:sans-serif;
+    font-size:18px !important;
+/*    line-height:100px; */
+    color:#000;
+    text-align:center;
+}
+section {
+    background:#9ed100;
+}
+.not-fullscreen {
+    height:50%;
+}
+
+#menu {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    vertical-align: middle;
+    z-index: 10;
+    display: flex; /* equal height of the children */
+}
+
+#menu img {
+    height: 70px;
+    float: left;
+}
+
+#menu a:hover img{
+    opacity: 0.7;
+    filter: alpha(opacity=70); /* For IE8 and earlier */
+}
+
+#menubar {
+    color: #fff;
+    font-family: BebasNeue !important;
+    float: right;
+    line-height: 70px;
+    vertical-align: middle;
+    position: relative;
+    height: 70px;
+}
+
+#menubar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+#menubar li {
+    background-color: #000;
+    width: 100px;
+    height: 100%;
+    display: block;
+    float: right;
+    vertical-align: middle;
+}
+
+#menubar li:hover {
+    background-color: rgba(0,0,0,0.7);
+}
+
+#menubar li a {
+    color #fff;
+    text-decoration: none;
+}
+
+#menubar li a:visited {
+    color #fff;
+}
+
+.menuitem {
+    flex: 1; /* additionally, equal width */
+}
+
+.figure {
+    margin: auto;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.fullimg {
+    width: 100%;
+}
+
+.container.content {
+    margin-top: 20px;
+}
+
+#videos {
+    text-align: left;
+    margin: 120px 20px;
+    width: 100%;
+}
+
+.empty {
+    width: 200px;
+}
+
+.thumbs {
+    margin-top: 20px;
+}
+
+.aboutcontent {
+    font-family: OpenSans;
+    padding: 100px 50% 100px 5%;
+    text-align: justify;
+}
+
+.about {
+    line-height: 2.5em;
+    margin-bottom: 30px;
+    color: white;
+    background-color: #000;
+    box-shadow: 0.5em 0 0 #000,-0.5em 0 0 #000;
+}
+
+.about a:hover {
+    color: crimson !important;
+}
+
+/* videos svg */
+
+.bgimg {
+      display: inline-block;
+      position: relative;
+      vertical-align: middle;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    svg {
+        margin-top: 2.8%;
+        margin-left: 3.4%;
+        margin-right: 3.3%;
+    }
+
+    .tooltip_path {
+      fill: rgba(0, 0, 0, 0);
+      transition: .3s fill;
+      display: block;
+    }
+
+    .tooltip_path:hover {
+      fill: rgba(0, 0, 0, 0.5);
+    }

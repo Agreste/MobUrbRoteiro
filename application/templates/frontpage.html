@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html class="background" style="background-image: url('/static/img/fundo.jpg')">
+<head>
+    <meta charset="utf-8">
+    <title>Mobiliário Urbano</title>
+    <meta name="description" content="{{ description }}">
+    <link href="/static/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div id="menu">
+    <img alt="Mobiliário urbano" href="{{ title }}" />
+</div>
+<div class="fullscreen background parallax"  data-img-width="1600" data-img-height="1064" data-diff="100">
+    <div class="content-a">
+        <div class="content-b-title">
+            <div class="box">
+                <img alt="Mobiliário urbano" href="{{ title }}" />
+            </div>
+       </div>
+    </div>
+</div>
+<div class="not-fullscreen background parallax">
+    <div class="content-a-txt">
+        <div class="content-b">
+        {% block content %}
+        {{ page }} 
+        {% endblock %}
+        </div>
+    </div>
+</div>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="/static/javascripts/article.js"></script>
+</body>
+</html>

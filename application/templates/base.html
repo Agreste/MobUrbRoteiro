@@ -1,32 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8">
-  {% if title %}
-    <title>{{title}}</title>
-  {% else %}
-    <title>My application</title>
-  {% endif %}
-  <link href="/static/css/bootstrap.css" rel="stylesheet">
-  <link href="/static/css/bootstrap-responsive.css" rel="stylesheet">
-  <link href="/static/css/custom.css" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Fascinate' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8">
+    <title>Mobiliário Urbano</title>
+    <meta name="description" content="{{ description }}">
+    <link href="/static/css/style.css" rel="stylesheet">
 </head>
-<body>
+<body class="background" style="background-image:url('/static/img/fundo.jpg');">
+<div id="menu">
+    <img alt="Mobiliário urbano" src="/static/img/Logo.png" />
+    <div id="menubar">
+        <ul>
+            <li> <a href="/sobre">Sobre</a> </li>
+            <li> <a href="/creditos">Cr&eacute;ditos</a> </li>
+            <li> <a href="/videos">V&iacute;deos</a> </li>
+        </ul>
+    </div>
+</div>
+<div class="fullscreen background parallax"  data-img-width="" data-img-height="1064" data-diff="100">
+    <div class="content-a">
+        <div class="content-b-title">
+            <div class="box">
+                <img id="botao_inicio" alt="Iniciar" src="/static/img/button.png">
+            </div>
+       </div>
+    </div>
+</div>
+<div class="fullscreen background parallax">
+    <div class="content-a-txt">
+        <div class="content-b">
+        {% block content %}
+        {{ page }} 
+        {% endblock %}
+        </div>
+    </div>
+</div>
+<script src="/static/javascripts/jquery-1.12.2.min.js"></script>
+<script src="/static/javascripts/jquery-scrollto.js"></script>
+<script src="/static/javascripts/video_player.js"></script>
+<script src="/static/javascripts/article.js"></script>
+<script type="text/javascript">
+        $(function () {
+            loc = window.location.pathname.slice(1);
+            changeUrl = true;
+            console.log(loc);
 
-  <div id="wrap">
-    {% include 'header.html' %}
-    <div class="container">
-          {% block content %}{% endblock %}
-    </div> <!-- container-fluid -->
-    <div id="push"></div>
-  </div> <!-- wrap id -->
+            if (loc != "") {
+                url = 'http://localhost:5000/roteiro/' + loc;
+                changeUrl = false;
+            } else {
+                url = 'http://localhost:5000/roteiro';
+            }
 
-  {% include 'footer.html' %}
+            $.getJSON(url, function (json) {
+                    var playlist = json;
+                    startVideos("videoPlaying", playlist);
+                    });
 
-  <!-- jQuery via Google + local fallback, see h5bp.com -->
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="static/js/jquery-1.8.0.min.js"><\/script>')</script>
-  <script src="/static/js/bootstrap.js"></script>
+            $('#botao_inicio').hover(function () {
+                $(this).animate({'opacity': '0.7'});
+            }, function () {
+                $(this).animate({'opacity': '1'});
+            });
+
+            $('#botao_inicio').click(function (){ 
+               $('.content-b').ScrollTo({offsetTop: 40}); 
+               $('#videoPlaying')[0].play();
+            });
+        });
+</script>
 </body>
 </html>

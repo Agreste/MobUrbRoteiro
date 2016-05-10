@@ -1,5 +1,12 @@
 startVideos = function(videoId, playlist) {
+    var locationHash = window.location.hash.substring(1);
     var video_idx = 0;
+
+    if (locationHash != "") {
+        video_idx = Number(locationHash);
+        console.log(video_idx);
+    }
+
     var videoPlaying = document.getElementById(videoId);
     var videoSource = videoPlaying.children[0];
 
@@ -9,6 +16,13 @@ startVideos = function(videoId, playlist) {
     videoPlaying.addEventListener('ended', changeVideo, false);
 
     function changeVideo(event) {
+        if (video_idx < playlist['sequence'].length && video_idx > 0) {
+            window.history.replaceState({}, '', playlist['slug'] + '#' + video_idx.toString());
+        } else {
+            window.history.replaceState({}, '', playlist['slug']);
+            video_idx = 0;
+        }
+
         videoSource.setAttribute('src', playlist['sequence'][video_idx]['url']);
 
         if (playlist['sequence'][video_idx]['url'] !== 'NOSUB') {

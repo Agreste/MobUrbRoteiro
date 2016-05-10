@@ -46,10 +46,10 @@
             console.log(loc);
 
             if (loc != "") {
-                url = 'http://o.moburb.org/roteiro/' + loc;
+                url = '/roteiro/' + loc;
                 changeUrl = false;
             } else {
-                url = 'http://o.moburb.org/roteiro';
+                url = '/roteiro';
             }
 
             $.getJSON(url, function (json) {

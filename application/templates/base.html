@@ -40,6 +40,7 @@
 <script src="/static/javascripts/video_player.js"></script>
 <script src="/static/javascripts/article.js"></script>
 <script type="text/javascript">
+        var p;
         $(function () {
             loc = window.location.pathname.slice(1);
             changeUrl = true;
@@ -54,6 +55,29 @@
 
             $.getJSON(url, function (json) {
                     var playlist = json;
+
+                    $.each(playlist.sequence, function (i, e) {
+                        if (i == 0) {
+                            videoName = "Início";
+                            videoUrl = '/' + playlist.slug;
+                        }
+                        else if (i == playlist.sequence.length - 1)
+                            videoName = "Encerramento";
+                        else
+                            videoName = e.name;
+
+
+                        videoUrl = playlist.slug + `#${i}`;
+
+                        videoPart = $(`<div class="videoParte">${videoName}</div>`);
+
+                        videoPart.click(function () {
+                          changeVideo(undefined, true, i);
+                        });
+                        
+                        $('#videoPath').append(videoPart);
+                    });
+
                     startVideos("videoPlaying", playlist);
                     });
 

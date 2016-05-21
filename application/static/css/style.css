@@ -261,20 +261,35 @@ ul li:hover ul {
       vertical-align: middle;
       overflow: hidden;
       width: 100%;
-    }
+}
 
-    svg {
-        margin-top: 2.8%;
-        margin-left: 3.4%;
-        margin-right: 3.3%;
-    }
+svg {
+    margin-top: 2.8%;
+    margin-left: 3.4%;
+    margin-right: 3.3%;
+}
 
-    .tooltip_path {
-      fill: rgba(0, 0, 0, 0);
-      transition: .3s fill;
-      display: block;
-    }
+.tooltip_path {
+  fill: rgba(0, 0, 0, 0);
+  transition: .3s fill;
+  display: block;
+}
 
-    .tooltip_path:hover {
-      fill: rgba(0, 0, 0, 0.5);
-    }
+.tooltip_path:hover {
+  fill: rgba(0, 0, 0, 0.5);
+}
+
+.videoParte {
+    float: left;
+    background: black;
+    color: white;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.videoParte:hover {
+    background: rgba(0,0,0, 0.8);
+    color: red;
+}

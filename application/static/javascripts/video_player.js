@@ -33,6 +33,10 @@ function changeVideo(event, playing, video_num) {
                 videoPlaying.textTracks[0].mode = "showing"; // thanks Firefox
             });
             this.appendChild(track);
+            if (Math.abs(screen.height - window.innerHeight) >= 10) {
+                this.setAttribute('height', this.clientHeight);
+            }
+
         });
     }
 
@@ -72,4 +76,5 @@ startVideos = function(videoId, pl) {
     }
 
     changeVideo(undefined, false);
+
 }

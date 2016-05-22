@@ -37,8 +37,11 @@ function changeVideo(event, playing, video_num) {
     }
 
     videoPlaying.load();
-    if (playing)
+    if (playing) {
+        $('.videoParte.partePlaying').removeClass('partePlaying');
+        $(`.parte-${video_idx}`).addClass('partePlaying');
         videoPlaying.play();
+    }
     video_idx += 1;
     if (video_idx == playlist.length) {
         video_idx = 0;
@@ -53,6 +56,8 @@ startVideos = function(videoId, pl) {
     if (locationHash != "") {
         video_idx = Number(locationHash);
     }
+
+    $(`.parte-${video_idx}`).addClass('partePlaying');
 
     videoPlaying = document.getElementById(videoId);
     videoSource = videoPlaying.children[0];

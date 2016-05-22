@@ -290,6 +290,23 @@ svg {
 }
 
 .videoParte:hover {
-    background: rgba(0,0,0, 0.8);
-    color: red;
+    background: rgba(83,8,8, 0.8);
+    box-shadow: inset 0px 0px 0px 6px rgba(83,8,8,0.7);
+}
+
+.videoParte.partePlaying {
+    background: rgba(137,23,23, 0.9);
+}
+
+.videoParte.partePlaying:hover {
+    color: white;
+    box-shadow: none;
+}
+
+.separatorVideos {
+    float: left;
+    font-size: 32px;
+    background: rgba(0,0,0,1);
+    color: white;
+    margin-right: 5px;
 }

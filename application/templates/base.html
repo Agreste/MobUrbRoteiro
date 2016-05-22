@@ -69,12 +69,16 @@
 
                         videoUrl = playlist.slug + `#${i}`;
 
-                        videoPart = $(`<div class="videoParte">${videoName}</div>`);
+                        if (i < playlist.sequence.length - 1)
+                            separator = '<span class="separatorVideos">〉</span>';
+                        else
+                            separator = '';
+                        videoPart = $(`<div class="videoParte parte-${i}">${videoName}</div>${separator}`);
 
                         videoPart.click(function () {
                           changeVideo(undefined, true, i);
                         });
-                        
+
                         $('#videoPath').append(videoPart);
                     });
 
@@ -89,8 +93,10 @@
 
             $('#botao_inicio').click(function (){ 
                $('.content-b').ScrollTo({offsetTop: 40}); 
-               $('#videoPlaying')[0].play();
+              $('#videoPlaying')[0].play();
             });
+            
+ 
         });
 </script>
 </body>

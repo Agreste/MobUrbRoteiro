@@ -36,7 +36,7 @@ def seleciona_proximo(video_atual, already_played):
     prob = [float(video)/normalizador for video in videos_weights[video_atual.name].values()]
     while True:
         proximo_video = np.random.choice(videos_weights[video_atual.name].keys(), p=prob)
-        if proximo_video[0] not in already_played:
+        if proximo_video not in already_played:
             break
     return videos[proximo_video]
 
@@ -94,7 +94,7 @@ def cria_roteiro(numero_maximo = 7, resolution="1280x720"):
     roteiro['sequence'] = [{'url': inicio[resolution], 'sub': 'NOSUB', 'id': -1}]
     abertura, fechamento = random_abertura_fechamento()
 
-    already_played = [abertura.name]
+    already_played = [abertura.name, fechamento.name]
     duracao_total += abertura.duration
 
     roteiro['sequence'].append(abertura.json(resolution))

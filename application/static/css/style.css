@@ -235,23 +235,34 @@ ul li:hover ul {
     margin-top: 20px;
 }
 
-.aboutcontent {
+.about {
     font-family: OpenSans;
-    padding: 100px 50% 100px 5%;
+    padding: 100px 25% 100px 5%;
     text-align: justify;
 }
 
-.about {
-    line-height: 2.5em;
+.about p {
+    font-size: larger !important;
+    line-height: 2em;
     margin-bottom: 30px;
-    color: white;
-    background-color: #000;
-    box-shadow: 0.5em 0 0 #000,-0.5em 0 0 #000;
+    color: #000;
+}
+
+.about p span {
+    display: inline;
+    margin-bottom: 10px;
+    padding: 5px 15px;;
+    background-color: #fff;
+}
+
+.about a{
+    color: crimson !important;
 }
 
 .about a:hover {
-    color: crimson !important;
+    color: red !important;
 }
+
 
 /* videos svg */
 

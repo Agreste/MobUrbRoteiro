@@ -36,5 +36,3 @@ def roteiro(slug=None):
         roteiro = sc.decode_slug(slug)
     return json.dumps(roteiro)
 
-
-

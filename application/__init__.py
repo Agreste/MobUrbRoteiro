@@ -41,6 +41,11 @@ def sobre():
 def creditos():
     return render_template('creditos.html'), 200
 
+@app.route('/mais')
+def mais():
+    return render_template('mais.html'), 200
+
+
 @app.route('/')
 @app.route('/<slug>')
 def index(slug=None):

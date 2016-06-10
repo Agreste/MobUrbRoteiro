@@ -15,7 +15,7 @@ function draw_path(roteiro) {
                              };
             circles.push(new_circle);
             if (i == 0 || i == roteiro['sequence'].length - 1) {
-                svg.insert("circle", ":first-child").attr("cx", new_circle["cx"]).attr("cy", new_circle["cy"]).attr("r", new_circle['r']).attr("fill-opacity", "0").attr("stroke", "red").attr("stroke-width", 4).attr("transform", "translate(-43.97 -36.95)");
+                svg.insert("circle", ":first-child").attr("cx", new_circle["cx"]).attr("cy", new_circle["cy"]).attr("r", new_circle['r']).attr("fill-opacity", "0").attr("stroke", "black").attr("stroke-width", 4).attr("transform", "translate(-43.97 -36.95)");
             } else {
                 svg.insert("circle", ":first-child").attr("cx", new_circle["cx"]).attr("cy", new_circle["cy"]).attr("r", new_circle['r']).attr("fill-opacity", "0").attr("transform", "translate(-43.97 -36.95)");
             }

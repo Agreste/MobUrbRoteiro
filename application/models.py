@@ -12,6 +12,7 @@ class Video(db.Model):
     position = db.Column(db.Text)
     tags = relationship("Tag", secondary="video_tag")
     subtitle = relationship("Subtitle")
+    short_name = db.Column(db.Text)
 
     def get_url(self, resolution="1280x720"):
         if resolution == "1280x720":

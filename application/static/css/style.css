@@ -242,6 +242,22 @@ ul li:hover ul {
     background-color: #fff;
 }
 
+.about h1 {
+    font-family: Lekton;
+    text-decoration: underline;
+}
+
+.about h2 span {
+    display: inline;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: smaller;
+    font-family: Lekton;
+    margin-bottom: 10px;
+    padding: 5px 15px;;
+    background-color: #fff;
+}
+
 .about a{
     color: crimson !important;
 }

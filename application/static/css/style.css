@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
 
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 
@@ -101,7 +101,7 @@ video {
     width: 75%;
     margin: auto;
     margin-bottom: 100%;
-    font-family: OpenSans;
+    font-family: Open Sans;
     padding: 40px 60px;
     font-size: 110%;
 }
@@ -167,6 +167,7 @@ section {
     display: block;
     float: right;
     vertical-align: middle;
+    font-size: medium;
 }
 
 #menubar li:hover {
@@ -222,7 +223,7 @@ ul li:hover ul {
 }
 
 .about {
-    font-family: OpenSans;
+    font-family: Open Sans;
     padding: 100px 25% 100px 5%;
     text-align: justify;
 }
@@ -287,7 +288,6 @@ svg {
     background: black;
     color: white;
     cursor: pointer;
-    font-size: 85%;
 }
 
 .videoParte:hover {
@@ -308,5 +308,5 @@ svg {
     background: rgba(0,0,0,1);
     color: white;
     padding-left: 5px;
-  	font-size: 60%;
+  	font-size: 99.93%;
 }

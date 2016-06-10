@@ -47,3 +47,14 @@ def videos(slug=None):
             roteiro = sc.decode_slug(slug, no_closures=True)
 
     return render_template('videos_pins.html', roteiro=roteiro), 200
+
+@app.route('/derivas/<slug>')
+def derivas(slug=None):
+    roteiro = None
+    if slug:
+        videos = db.session.query(Video).filter(Video.short_name.like('{}%'.format(slug)))
+
+        vs = ''.join([v.short_name for v in videos])
+        roteiro = sc.decode_slug(vs, deriva=True)
+
+    return render_template('videos_pins.html', roteiro=roteiro), 200

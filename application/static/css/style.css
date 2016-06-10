@@ -153,14 +153,14 @@ section {
     float: left;
 }
 
-#menubar ul {
+#menubar ul.primary {
     list-style-type: none;
     margin: 0;
     padding: 0;
     vertical-align: middle;
 }
 
-#menubar li {
+#menubar ul.primary > li {
     background-color: #000;
     width: 100px;
     height: 100%;
@@ -170,7 +170,7 @@ section {
     font-size: medium;
 }
 
-#menubar li:hover {
+#menubar ul.primary > li:hover {
     background-color: rgba(0,0,0,0.7);
 }
 
@@ -329,4 +329,24 @@ svg {
 
 #menubar #derivas {
      background-color: #333;
+}
+
+.dropdown-menu.moburb {
+     margin: 0;
+     background-color: rgba(0,0,0,0.8);
+     border: 0;
+}
+
+.dropdown-menu.moburb:hover {
+     margin: 0;
+     background-color: rgba(0,0,0,0.8);
+     border: 0;
+}
+
+
+.dropdown-menu.moburb > li > a:hover {
+     margin: 0;
+     background-color: rgba(0,0,0,0.9);
+     color: white;
+     border: 0;
 }

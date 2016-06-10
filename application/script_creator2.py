@@ -64,11 +64,13 @@ def create_slug(lista):
 def create_slug_simple(lista):
     return ''.join([l['short_name'] for l in lista])
 
-def decode_slug(slug, resolution="1280x720", no_closures=False):
-    if slug.startswith('AB'):
+def decode_slug(slug, resolution="1280x720", deriva=False):
+    if not deriva:
         partes = ['AB']
-
-    partes += [slug[i:i + 4] for i in range(2, len(slug)-4, 4)]
+        partes += [slug[i:i + 4] for i in range(2, len(slug)-4, 4)]
+    else:
+        partes = []
+        partes += [slug[i:i + 4] for i in range(0, len(slug), 4)]
 
     roteiro = {}
     roteiro['duration'] = 0
@@ -81,7 +83,8 @@ def decode_slug(slug, resolution="1280x720", no_closures=False):
         roteiro['duration'] += video.duration
         roteiro['sequence'].append(video.json(resolution))
 
-    roteiro['sequence'].append({'url': finalizacao[resolution], 'sub': 'NOSUB', 'id': -1, 'vid': 159699558, 'short_name': 'FE'})
+    if not deriva:
+        roteiro['sequence'].append({'url': finalizacao[resolution], 'sub': 'NOSUB', 'id': -1, 'vid': 159699558, 'short_name': 'FE'})
 
     return roteiro
 

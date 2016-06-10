@@ -36,3 +36,11 @@ def roteiro(slug=None):
         roteiro = sc.decode_slug(slug)
     return json.dumps(roteiro)
 
+@app.route('/videos')
+@app.route('/videos/<slug>')
+def videos(slug=None):
+    roteiro = None
+    if slug:
+        roteiro = sc.decode_slug(slug)
+
+    return render_template('videos_pins.html', roteiro=roteiro), 200

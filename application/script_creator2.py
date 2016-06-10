@@ -68,7 +68,7 @@ def decode_slug(slug, resolution="1280x720"):
     roteiro = {}
     roteiro['duration'] = 0
     roteiro['slug'] = slug
-    roteiro['sequence'] = [{'url': inicio[resolution], 'sub': 'NOSUB', 'id': -1}]
+    roteiro['sequence'] = [{'url': inicio[resolution], 'sub': 'NOSUB', 'id': -1, 'vid': 159699169}]
 
     for c in slug:
         if c == '0':
@@ -83,7 +83,7 @@ def decode_slug(slug, resolution="1280x720"):
         roteiro['duration'] += video.duration
         roteiro['sequence'].append(video.json(resolution))
 
-    roteiro['sequence'].append({'url': finalizacao[resolution], 'sub': 'NOSUB', 'id': -1})
+    roteiro['sequence'].append({'url': finalizacao[resolution], 'sub': 'NOSUB', 'id': -1, 'vid': 159699558})
 
     return roteiro
 

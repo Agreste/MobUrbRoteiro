@@ -143,7 +143,8 @@ section {
 
 #menubar {
     color: #fff;
-    font-family: BebasNeue !important;
+    font-family: Oswald !important;
+    text-transform: uppercase;
     float: right;
     line-height: 70px;
     vertical-align: middle;
@@ -164,7 +165,7 @@ section {
     width: 100px;
     height: 100%;
     display: block;
-    float: left;
+    float: right;
     vertical-align: middle;
 }
 
@@ -227,7 +228,7 @@ ul li:hover ul {
 }
 
 .about p {
-    font-size: larger !important;
+    font-size: medium !important;
     line-height: 2em;
     margin-bottom: 30px;
     color: #000;
@@ -276,8 +277,9 @@ svg {
 }
 
 #videoPath {
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-weight: 300;
+    font-size: medium;
+    font-family: Lekton;
 }
 
 .videoParte {
@@ -306,5 +308,5 @@ svg {
     background: rgba(0,0,0,1);
     color: white;
     padding-left: 5px;
-	font-size: smaller;
+  	font-size: 60%;
 }

@@ -11,13 +11,21 @@ function draw_path(roteiro) {
             var bbox = path.node().getBBox();
             var new_circle = {'cx': bbox['x'] + bbox['width']/2.0,
                               'cy': bbox['y'] + bbox['height']/2.0,
-                              'r': bbox['width']/2.0 + 3
+                              'r': bbox['width']/2.0
                              };
             circles.push(new_circle);
             svg.insert("circle", ":first-child").attr("cx", new_circle["cx"]).attr("cy", new_circle["cy"]).attr("r", new_circle['r']).attr("fill-opacity", "0").attr("transform", "translate(-43.97 -36.95)");
         }
 
-        lineData.push({'x': new_circle['cx'], 'y': new_circle['cy']});
+    }
+
+    for (var i = 0; i < circles.length - 1; ++i) {
+        var lx = circles[i + 1]['cx'] - circles[i]['cx'];
+        var ly = circles[i + 1]['cy'] - circles[i]['cy'];
+        var distance = Math.sqrt(Math.pow(lx,2) + Math.pow(ly, 2));
+        var dx = circles[i]['r']*lx/distance;
+        var dy = circles[i]['r']*ly/distance;
+        lineData.push({'x': circles[i]['cx'] + dx, 'y': circles[i]['cy'] + dy});
     }
 
     var lineFunction = d3.svg.line().x(function(d) { return d.x;  }).y(function(d) { return d.y;  }).interpolate("linear");

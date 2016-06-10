@@ -46,15 +46,15 @@ def videos(slug=None):
         else:
             roteiro = sc.decode_slug(slug, no_closures=True)
 
-    return render_template('videos_pins.html', roteiro=roteiro), 200
+    return render_template('videos_pins.html', roteiro=roteiro, slug=slug), 200
 
-@app.route('/derivas/<slug>')
-def derivas(slug=None):
+@app.route('/derivas/<slug>/<short>')
+def derivas(slug=None, short=None):
     roteiro = None
-    if slug:
-        videos = db.session.query(Video).filter(Video.short_name.like('{}%'.format(slug)))
+    if short:
+        videos = db.session.query(Video).filter(Video.short_name.like('{}%'.format(short)))
 
         vs = ''.join([v.short_name for v in videos])
         roteiro = sc.decode_slug(vs, deriva=True)
 
-    return render_template('videos_pins.html', roteiro=roteiro), 200
+    return render_template('videos_pins.html', roteiro=roteiro, slug=slug), 200

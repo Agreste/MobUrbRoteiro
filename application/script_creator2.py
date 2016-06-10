@@ -61,35 +61,27 @@ def create_slug(lista):
                 slug += '0' + sym[video['id'] - 61]
     return slug
 
+def create_slug_simple(lista):
+    return ''.join([l['short_name'] for l in lista])
+
 def decode_slug(slug, resolution="1280x720", no_closures=False):
-    lista = []
-    a = 0
+    if slug.startswith('AB'):
+        partes = ['AB']
+
+    partes += [slug[i:i + 4] for i in range(2, len(slug)-4, 4)]
 
     roteiro = {}
     roteiro['duration'] = 0
     roteiro['slug'] = slug
 
-    if not no_closures:
-        roteiro['sequence'] = [{'url': inicio[resolution], 'sub': 'NOSUB', 'id': -1, 'vid': 159699169}]
-    else:
-        roteiro['sequence'] = []
-        slug = slug[7:]
+    roteiro['sequence'] = []
 
-    for c in slug:
-        if c == '0':
-           a = 61
-           continue
-        else:
-           lista += [a + sym.index(c)]
-           a = 0
-
-    for id in lista:
-        video = db.session.query(models.Video).get(id)
+    for sn in partes:
+        video = db.session.query(models.Video).filter(models.Video.short_name == sn).one()
         roteiro['duration'] += video.duration
         roteiro['sequence'].append(video.json(resolution))
 
-    if not no_closures:
-        roteiro['sequence'].append({'url': finalizacao[resolution], 'sub': 'NOSUB', 'id': -1, 'vid': 159699558})
+    roteiro['sequence'].append({'url': finalizacao[resolution], 'sub': 'NOSUB', 'id': -1, 'vid': 159699558, 'short_name': 'FE'})
 
     return roteiro
 
@@ -97,7 +89,7 @@ def cria_roteiro(numero_maximo = 7, resolution="1280x720"):
     roteiro = {'duration': 0, 'sequence': []}
     duracao_total = 0
 
-    roteiro['sequence'] = [{'url': inicio[resolution], 'sub': 'NOSUB', 'id': -1}]
+    roteiro['sequence'] = [{'url': inicio[resolution], 'sub': 'NOSUB', 'id': -1, 'short_name': 'AB'}]
     abertura, fechamento = random_abertura_fechamento()
 
     already_played = [abertura.name, fechamento.name]
@@ -118,7 +110,7 @@ def cria_roteiro(numero_maximo = 7, resolution="1280x720"):
     duracao_total += fechamento.duration
 
     roteiro['sequence'].append(fechamento.json(resolution))
-    roteiro['sequence'].append({'url': finalizacao[resolution], 'sub': 'NOSUB', 'id': -1})
+    roteiro['sequence'].append({'url': finalizacao[resolution], 'sub': 'NOSUB', 'id': -1, 'short_name': 'FE'})
 
     # Adiciona cortes do Borbagato
 
@@ -136,12 +128,8 @@ def cria_roteiro(numero_maximo = 7, resolution="1280x720"):
     roteiro['duration'] = duracao_total
     minutos = int(duracao_total)/60
     segundos = int(duracao_total)%60
-    if segundos != 0:
-        print '{}m{}s'.format(minutos, segundos)
-    else:
-        print '{}m'.format(minutos)
 
-    roteiro['slug'] = create_slug(roteiro['sequence'])
+    roteiro['slug'] = create_slug_simple(roteiro['sequence'])
 
     return roteiro
 

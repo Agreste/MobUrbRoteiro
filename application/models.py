@@ -27,6 +27,7 @@ class Video(db.Model):
                 'name': self.name,
                 'sub': self.subtitle[0].filename,
                 'vid': self.vimeo_id,
+                'short_name': self.short_name,
                 'url': self.get_url(resolution)}
 
 class Tag(db.Model):

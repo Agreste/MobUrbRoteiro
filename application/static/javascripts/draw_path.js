@@ -26,6 +26,11 @@ function draw_path(roteiro) {
         var dx = circles[i]['r']*lx/distance;
         var dy = circles[i]['r']*ly/distance;
         lineData.push({'x': circles[i]['cx'] + dx, 'y': circles[i]['cy'] + dy});
+        if (i == circles.length - 2) {
+            var dx = circles[i + 1]['r']*lx/distance;
+            var dy = circles[i + 1]['r']*ly/distance;
+            lineData.push({'x': circles[i + 1]['cx'] - dx, 'y': circles[i + 1]['cy'] - dy});
+        }
     }
 
     var lineFunction = d3.svg.line().x(function(d) { return d.x;  }).y(function(d) { return d.y;  }).interpolate("linear");

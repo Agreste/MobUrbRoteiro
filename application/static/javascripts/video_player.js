@@ -69,6 +69,12 @@ startVideos = function(videoId, pl) {
     if (changeUrl)
         window.history.replaceState({}, '', playlist['slug']);
 
+    videos_menu = $('#videos-menu > a');
+
+    videos_menu.attr('href', videos_menu.attr('href') + `/${playlist['slug']}`);
+
+
+
     videoPlaying.addEventListener('ended', changeVideoEv, false);
 
     function changeVideoEv(event) {

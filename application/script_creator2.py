@@ -61,14 +61,19 @@ def create_slug(lista):
                 slug += '0' + sym[video['id'] - 61]
     return slug
 
-def decode_slug(slug, resolution="1280x720"):
+def decode_slug(slug, resolution="1280x720", no_closures=False):
     lista = []
     a = 0
 
     roteiro = {}
     roteiro['duration'] = 0
     roteiro['slug'] = slug
-    roteiro['sequence'] = [{'url': inicio[resolution], 'sub': 'NOSUB', 'id': -1, 'vid': 159699169}]
+
+    if not no_closures:
+        roteiro['sequence'] = [{'url': inicio[resolution], 'sub': 'NOSUB', 'id': -1, 'vid': 159699169}]
+    else:
+        roteiro['sequence'] = []
+        slug = slug[7:]
 
     for c in slug:
         if c == '0':
@@ -83,7 +88,8 @@ def decode_slug(slug, resolution="1280x720"):
         roteiro['duration'] += video.duration
         roteiro['sequence'].append(video.json(resolution))
 
-    roteiro['sequence'].append({'url': finalizacao[resolution], 'sub': 'NOSUB', 'id': -1, 'vid': 159699558})
+    if not no_closures:
+        roteiro['sequence'].append({'url': finalizacao[resolution], 'sub': 'NOSUB', 'id': -1, 'vid': 159699558})
 
     return roteiro
 

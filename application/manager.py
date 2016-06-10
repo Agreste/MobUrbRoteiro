@@ -41,6 +41,9 @@ def roteiro(slug=None):
 def videos(slug=None):
     roteiro = None
     if slug:
-        roteiro = sc.decode_slug(slug)
+        if not slug.startswith('deriva-'):
+            roteiro = sc.decode_slug(slug)
+        else:
+            roteiro = sc.decode_slug(slug, no_closures=True)
 
     return render_template('videos_pins.html', roteiro=roteiro), 200

@@ -14,7 +14,7 @@ function draw_path(roteiro) {
                               'r': bbox['width']/2.0 + 3
                              };
             circles.push(new_circle);
-            svg.insert("circle", ":first-child").attr("cx", new_circle["cx"]).attr("cy", new_circle["cy"]).attr("r", new_circle['r']).attr("transform", "translate(-43.97 -36.95)");
+            svg.insert("circle", ":first-child").attr("cx", new_circle["cx"]).attr("cy", new_circle["cy"]).attr("r", new_circle['r']).attr("fill-opacity", "0").attr("transform", "translate(-43.97 -36.95)");
         }
 
         lineData.push({'x': new_circle['cx'], 'y': new_circle['cy']});

@@ -242,8 +242,9 @@ ul li:hover ul {
     background-color: #fff;
 }
 
-.about h2 {
+.about h1 {
     font-family: Lekton;
+    text-decoration: underline;
 }
 
 .about h2 span {

@@ -123,10 +123,9 @@ section {
 }
 
 #menu {
-    width: 100%;
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
     vertical-align: middle;
     z-index: 10;
     display: flex; /* equal height of the children */
@@ -165,7 +164,7 @@ section {
     width: 100px;
     height: 100%;
     display: block;
-    float: right;
+    float: left;
     vertical-align: middle;
 }
 

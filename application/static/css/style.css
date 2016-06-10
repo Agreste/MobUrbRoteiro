@@ -1,29 +1,10 @@
-@font-face {
-    font-family: OpenSans;
-    src: url('/static/fonts/OpenSans-Light.ttf');
-}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-@font-face {
-    font-family: OpenSans;
-    src: url('/static/fonts/OpenSans-LightItalic.ttf');
-    font-style: italic;
-}
+@import url(https://fonts.googleapis.com/css?family=Oswald);
 
+@import url(https://fonts.googleapis.com/css?family=Josefin+Slab);
 
-@font-face {
-    font-family: BebasNeue;
-    src: url('/static/fonts/BebasNeue.otf');
-}
-
-@font-face {
-    font-family: JosefinSlab;
-    src: url('/static/fonts/JosefinSlab-Light.ttf');
-}
-
-@font-face {
-    font-family: Lekton;
-    src: url('/static/fonts/Lekton-Regular.ttf');
-}
+@import url(https://fonts.googleapis.com/css?family=Lekton);
 
 /* fullscreen setup */
 html, body {
@@ -92,13 +73,17 @@ a {
 }
 
 .content-b-title h1 {
-    font-family: BebasNeue;
+    font-family: Oswald;
+    font-weight: bold;
+    text-transform: uppercase;
     font-size: 45px;
     color: #fff;
 }
 
 .content-b-title h2 {
-    font-family: BebasNeue;
+    font-family: Oswald;
+    font-weight: bold;
+    text-transform: uppercase;
     font-size: 25px;
     color: #fff;
 }
@@ -165,6 +150,7 @@ section {
     vertical-align: middle;
     position: relative;
     height: 70px;
+    float: left;
 }
 
 #menubar ul {

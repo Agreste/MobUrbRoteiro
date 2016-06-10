@@ -11,10 +11,10 @@
     <img alt="Mobiliário urbano" src="/static/img/Logo.png" />
     <div id="menubar">
         <ul>
+            <li><a href="/mais">Mais</a></li>
             <li> <a href="/sobre">Sobre</a> </li>
             <li> <a href="/creditos">Cr&eacute;ditos</a> </li>
             <li> <a href="/videos">V&iacute;deos</a> </li>
-            <li><a href="/mais">Mais</a></li>
         </ul>
     </div>
 </div>
@@ -31,8 +31,9 @@
     <div class="content-a-txt">
         <div class="content-b">
         {% block content %}
-        {{ page }} 
+        {{ page }}
         {% endblock %}
+        <a href="http://moburb.org"><img alt="novo filme" src="/static/img/shuffle.png"></a>
         </div>
     </div>
 </div>
@@ -92,12 +93,12 @@
                 $(this).animate({'opacity': '1'});
             });
 
-            $('#botao_inicio').click(function (){ 
-               $('.content-b').ScrollTo({offsetTop: 40}); 
+            $('#botao_inicio').click(function (){
+               $('.content-b').ScrollTo({offsetTop: 40});
               $('#videoPlaying')[0].play();
             });
-            
- 
+
+
         });
 </script>
 </body>

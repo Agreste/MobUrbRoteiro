@@ -14,7 +14,11 @@ function draw_path(roteiro) {
                               'r': bbox['width']/2.0
                              };
             circles.push(new_circle);
-            svg.insert("circle", ":first-child").attr("cx", new_circle["cx"]).attr("cy", new_circle["cy"]).attr("r", new_circle['r']).attr("fill-opacity", "0").attr("transform", "translate(-43.97 -36.95)");
+            if (i == 0 || i == roteiro['sequence'].length - 1) {
+                svg.insert("circle", ":first-child").attr("cx", new_circle["cx"]).attr("cy", new_circle["cy"]).attr("r", new_circle['r']).attr("fill-opacity", "0").attr("stroke", "red").attr("stroke-width", 4).attr("transform", "translate(-43.97 -36.95)");
+            } else {
+                svg.insert("circle", ":first-child").attr("cx", new_circle["cx"]).attr("cy", new_circle["cy"]).attr("r", new_circle['r']).attr("fill-opacity", "0").attr("transform", "translate(-43.97 -36.95)");
+            }
         }
 
     }

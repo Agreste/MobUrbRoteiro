@@ -19,8 +19,6 @@ function changeVideo(event, playing, video_num) {
         }
     }
 
-    console.log(lang);
-
     if (typeof(video_num) == "number") {
         video_idx = video_num;
     }
